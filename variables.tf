@@ -81,16 +81,16 @@ EOT
     container_registry_id = string
     name                  = string
     agent_pool_name       = optional(string)
-    enabled               = optional(bool, true)
-    is_system_task        = optional(bool, false)
+    enabled               = optional(bool) # Default: true
+    is_system_task        = optional(bool) # Default: false
     log_template          = optional(string)
     tags                  = optional(map(string))
-    timeout_in_seconds    = optional(number, 3600)
+    timeout_in_seconds    = optional(number) # Default: 3600
     agent_setting = optional(object({
       cpu = number
     }))
     base_image_trigger = optional(object({
-      enabled                     = optional(bool, true)
+      enabled                     = optional(bool) # Default: true
       name                        = string
       type                        = string
       update_trigger_endpoint     = optional(string)
@@ -98,12 +98,12 @@ EOT
     }))
     docker_step = optional(object({
       arguments            = optional(map(string))
-      cache_enabled        = optional(bool, true)
+      cache_enabled        = optional(bool) # Default: true
       context_access_token = string
       context_path         = string
       dockerfile_path      = string
       image_names          = optional(list(string))
-      push_enabled         = optional(bool, true)
+      push_enabled         = optional(bool) # Default: true
       secret_arguments     = optional(map(string))
       target               = optional(string)
     }))
@@ -152,14 +152,14 @@ EOT
         token_type        = string
       }))
       branch         = optional(string)
-      enabled        = optional(bool, true)
+      enabled        = optional(bool) # Default: true
       events         = list(string)
       name           = string
       repository_url = string
       source_type    = string
     }))
     timer_trigger = optional(object({
-      enabled  = optional(bool, true)
+      enabled  = optional(bool) # Default: true
       name     = string
       schedule = string
     }))
