@@ -88,7 +88,7 @@ resource "azurerm_container_registry_task" "container_registry_tasks" {
     for_each = each.value.registry_credential != null ? [each.value.registry_credential] : []
     content {
       dynamic "custom" {
-        for_each = registry_credential.value.custom != null ? [registry_credential.value.custom] : []
+        for_each = registry_credential.value.custom != null ? registry_credential.value.custom : []
         content {
           identity     = custom.value.identity
           login_server = custom.value.login_server
@@ -106,7 +106,7 @@ resource "azurerm_container_registry_task" "container_registry_tasks" {
   }
 
   dynamic "source_trigger" {
-    for_each = each.value.source_trigger != null ? [each.value.source_trigger] : []
+    for_each = each.value.source_trigger != null ? each.value.source_trigger : []
     content {
       dynamic "authentication" {
         for_each = source_trigger.value.authentication != null ? [source_trigger.value.authentication] : []
@@ -128,7 +128,7 @@ resource "azurerm_container_registry_task" "container_registry_tasks" {
   }
 
   dynamic "timer_trigger" {
-    for_each = each.value.timer_trigger != null ? [each.value.timer_trigger] : []
+    for_each = each.value.timer_trigger != null ? each.value.timer_trigger : []
     content {
       enabled  = timer_trigger.value.enabled
       name     = timer_trigger.value.name

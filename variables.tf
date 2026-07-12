@@ -133,17 +133,17 @@ EOT
       variant      = optional(string)
     }))
     registry_credential = optional(object({
-      custom = optional(object({
+      custom = optional(list(object({
         identity     = optional(string)
         login_server = string
         password     = optional(string)
         username     = optional(string)
-      }))
+      })))
       source = optional(object({
         login_mode = string
       }))
     }))
-    source_trigger = optional(object({
+    source_trigger = optional(list(object({
       authentication = optional(object({
         expire_in_seconds = optional(number)
         refresh_token     = optional(string)
@@ -157,12 +157,12 @@ EOT
       name           = string
       repository_url = string
       source_type    = string
-    }))
-    timer_trigger = optional(object({
+    })))
+    timer_trigger = optional(list(object({
       enabled  = optional(bool) # Default: true
       name     = string
       schedule = string
-    }))
+    })))
   }))
 }
 
