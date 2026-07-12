@@ -1,3 +1,7 @@
+output "container_registry_tasks_id" {
+  description = "Map of id values across all container_registry_tasks, keyed the same as var.container_registry_tasks"
+  value       = { for k, v in azurerm_container_registry_task.container_registry_tasks : k => v.id }
+}
 output "container_registry_tasks_agent_pool_name" {
   description = "Map of agent_pool_name values across all container_registry_tasks, keyed the same as var.container_registry_tasks"
   value       = { for k, v in azurerm_container_registry_task.container_registry_tasks : k => v.agent_pool_name }
